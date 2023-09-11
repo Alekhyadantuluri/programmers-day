@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background-color: lightgrey;
+        }
+        span {
+            margin-top: 50px;
+            color: navy;
+            border:2px solid navy;
+            font-weight:bolder;
+            font-size:40px;
+        }
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+        #a {
+            font-size: 24px;
+            font-weight: italic;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <br><br><br>
+    <span>Rock Paper Scissors</span>
+    <br><br>
+    <button id="rock">Rock</button>
+    <button id="paper">Paper</button>
+    <button id="scissors">Scissors</button>
+    <div id="a"></div>
+
+    <script>
+        const choices = ["rock", "paper", "scissors"];
+
+        function computerChoice() {
+            const randomIndex = Math.floor(Math.random() * 3);
+            return choices[randomIndex];
+        }
+
+        function playGame(playerChoice) {
+            const computer = computerChoice();
+
+            if (playerChoice === computer) {
+                showResult("It's a tie!");
+            } else if (
+                (playerChoice === "rock" && computer === "scissors") ||
+                (playerChoice === "paper" && computer === "rock") ||
+                (playerChoice === "scissors" && computer === "paper")
+            ) {
+                showResult(`You win! Computer chose ${computer}.`);
+            } else {
+                showResult(`You lose. Computer chose ${computer}.`);
+            }
+        }
+
+        function showResult(message) {
+            const resultDiv = document.getElementById("a");
+            resultDiv.textContent = message;
+        }
+
+        document.getElementById("rock").addEventListener("click", () => playGame("rock"));
+        document.getElementById("paper").addEventListener("click", () => playGame("paper"));
+        document.getElementById("scissors").addEventListener("click", () => playGame("scissors"));
+    </script>
+</body>
+</html>
